@@ -3,11 +3,11 @@
  */
 app.factory('userFactory', function(){
     var obj={};
-    var data=[{userid:1, username:'admin', password:'admin',firstname:'shanshan',lastname:'gao',email:'gao@gmail.com',mobile:'12345'}];
+    var data=[{userId:1, username:'admin', password:'admin',firstname:'shanshan',lastname:'gao',email:'gao@gmail.com',mobile:'12345'}];
     var accounts=[];
 
     obj.addUser=function(user){
-        user.userid=data.length+1;
+        user.userId=data.length+1;
         data.push(user);
     }
 
@@ -31,7 +31,7 @@ app.factory('userFactory', function(){
     obj.getUserById=function(id){
         var user=null;
         for(var i=0; i<data.length; i++){
-            if(data[i].userid==id){
+            if(data[i].userId==id){
                 user = data[i];
                 break;
             }
@@ -54,11 +54,11 @@ app.factory('userFactory', function(){
 
     }
 
-    obj.getAccountsByAccountsid=function(accountid){
+    obj.getAccountsByAccountsId=function(accountId){
         var myAccounts=[];
         var myAccount=null;
         for (var i= 0; i<accounts.length; i++){
-            if(accounts[i].accountid==accountid){
+            if(accounts[i].accountId==accountId){
                 myAccount=accounts[i];
                 myAccounts.push(myAccount);
             }
@@ -69,7 +69,7 @@ app.factory('userFactory', function(){
     obj.getAccountByAccountNumber=function(accountNumber){
         var myAccount=null;
         for (var i=0; i<accounts.length; i++){
-            if(accounts[i].accountnumber==accountNumber){
+            if(accounts[i].accountNumber==accountNumber){
                 myAccount=accounts[i];
             }
         }
@@ -79,8 +79,8 @@ app.factory('userFactory', function(){
 
     obj.saveAccount=function(account){
         accounts.push(account);
-        //alert("saving"+ accounts[0].accountnumber);
-        //alert("checking"+accounts[accounts.length-1].accountnumber);
+        //alert("saving"+ accounts[0].accountNumber);
+        //alert("checking"+accounts[accounts.length-1].accountNumber);
     }
 
 

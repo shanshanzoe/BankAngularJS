@@ -1,16 +1,16 @@
 /**
  * Created by shanshan on 7/25/15.
  */
-app.controller('accountcontroller', function($scope, $rootScope,$location,$routeParams, userFactory) {
+app.controller('accountController', function($scope, $rootScope,$location,$routeParams, userFactory) {
     $rootScope.loggedIn=false;
     $rootScope.loggedUser=null;
     $rootScope.user=null;
-    $rootScope.userAccount={accountid:1, accounttype:'', accountnumber:'', accountbalance:''};
+    $rootScope.userAccount={accountId:1, accountType:'', accountNumber:'', accountBalance:''};
     $rootScope.isViewing=false;
     $rootScope.isEditing=false;
     $rootScope.theUser=null;
-    $rootScope.myAccounts=[{accountid:1, accounttype:'',accountnumber:'',accountbalance:''}];
-    $rootScope.myAccount={accountid:1, accounttype:'',accountnumber:'',accountbalance:''};
+    $rootScope.myAccounts=[{accountId:1, accountType:'',accountNumber:'',accountBalance:''}];
+    $rootScope.myAccount={accountId:1, accountType:'',accountNumber:'',accountBalance:''};
 
 
     function init(){
@@ -32,7 +32,7 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
                 var myUsername= sessionStorage['username'];
                 var myUser=userFactory.getUserByUsername(myUsername);
                 $rootScope.theUser=myUser;
-                $rootScope.myAccounts=userFactory.getAccountsByAccountsid(myUser.userid);
+                $rootScope.myAccounts=userFactory.getAccountsByAccountsId(myUser.userId);
 
 
 
@@ -44,7 +44,7 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
     $scope.addUser=function(){
         userFactory.addUser($scope.newUser);
         alert("adduser: "+$scope.newUser.email);
-        $location.path('/adminhome');
+        $location.path('/adminHome');
 
     }
 
@@ -60,11 +60,11 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
             sessionStorage['username']=$scope.loginModel.username;
 
             if($scope.loginModel.username=='admin'){
-                $location.path('/adminhome');
+                $location.path('/adminHome');
             }else{
 
                     //sessionStorage['user']=myUser;
-                $location.path('/customerhome');
+                $location.path('/customerHome');
 
             }
 
@@ -93,17 +93,17 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
     }
 
     $scope.registerUser=function(){
-        $location.path('/addnew');
+        $location.path('/addNew');
     }
 
     $scope.closeRegister=function(){
-        $location.path('/adminhome');
+        $location.path('/adminHome');
     }
 
     function getUserById(){
-        var userid=$routeParams.userId;
-        if(userid !=null||userid!=undefined) {
-            $rootScope.user= userFactory.getUserById(userid);
+        var userId=$routeParams.userId;
+        if(userId !=null||userId!=undefined) {
+            $rootScope.user= userFactory.getUserById(userId);
 
 
         }
@@ -112,11 +112,11 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
 
 
     function getAccountByAccountNumber(){
-        var accountnumber=$routeParams.accountNumber;
-        if(accountnumber!=null||accountnumber!=undefined){
-            $rootScope.myAccount=userFactory.getAccountByAccountNumber(accountnumber);
+        var accountNumber=$routeParams.accountNumber;
+        if(accountNumber!=null||accountNumber!=undefined){
+            $rootScope.myAccount=userFactory.getAccountByAccountNumber(accountNumber);
         }
-        //alert("myacccounttype:  "+$rootScope.myAccount.accounttype);
+
     }
     getAccountByAccountNumber();
 
@@ -132,32 +132,32 @@ app.controller('accountcontroller', function($scope, $rootScope,$location,$route
 
     $scope.editUser=function(){
 
-        var userid=$routeParams.userId;
-        if(userid !=null||userid!=undefined){
-            var user=userFactory.getUserById(userid);
+        var userId=$routeParams.userId;
+        if(userId !=null||userId!=undefined){
+            var user=userFactory.getUserById(userId);
                 user=$rootScope.user;
         }
-        $location.path('/adminhome');
+        $location.path('/adminHome');
 
     }
 
-    $scope.deleteUser=function(userid){
-        alert(userid);
-        if(userid!=null||userid!=undefined){
-            var user=userFactory.getUserById(userid);
+    $scope.deleteUser=function(userId){
+        alert(userId);
+        if(userId!=null||userId!=undefined){
+            var user=userFactory.getUserById(userId);
             var users=userFactory.getUsers();
-            users.splice(userid-1,1);
+            users.splice(userId-1,1);
         }
-        $location.path('/adminhome');
+        $location.path('/adminHome');
     }
 
     $scope.saveAccount=function(){
-        var userid= $routeParams.userId;
-        $rootScope.userAccount.accountid=userid;
+        var userId= $routeParams.userId;
+        $rootScope.userAccount.accountId=userId;
 
         userFactory.saveAccount($rootScope.userAccount);
 
-        $location.path('/adminhome');
+        $location.path('/adminHome');
 
     }
 

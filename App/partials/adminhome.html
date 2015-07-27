@@ -15,7 +15,7 @@
         </thead>
         <tbody ng-repeat="lala in allUsers">
         <tr>
-            <td>{{lala.userid}}</td>
+            <td>{{lala.userId}}</td>
             <td>{{lala.username}}</td>
             <td>{{lala.password}}</td>
             <td>{{lala.firstname}}</td>
@@ -23,9 +23,9 @@
             <td>{{lala.email}}</td>
             <td>{{lala.mobile}}</td>
             <td>
-                <a href="#/customerinfo/{{lala.userid}}" >view&update</a>
-                <a href="" ng-click="deleteUser(lala.userid)">delete</a>
-                <a href="#/customeraccounts/{{lala.userid}}">account</a>
+                <a href="#/customerInfo/{{lala.userId}}" >view&update</a>
+                <a href="" ng-click="deleteUser(lala.userId)">delete</a>
+                <a href="#/customerAccounts/{{lala.userId}}">account</a>
             </td>
         </tr>
         </tbody>
@@ -49,10 +49,10 @@
 
             <tbody ng-repeat="account in allAccounts">
             <tr>
-                <td>{{account.accountid}}</td>
-                <td>{{account.accounttype}}</td>
-                <td>{{account.accountnumber}}</td>
-                <td>{{account.accountbalance}}</td>
+                <td>{{account.accountId}}</td>
+                <td>{{account.accountType}}</td>
+                <td>{{account.accountNumber}}</td>
+                <td>{{account.accountBalance}}</td>
             </tr>
             </tbody>
 
