@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+
+    <title>Bank App Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <script src="App/libs/angular.min.js"></script>
+    <script src="App/libs/angular-route.min.js"></script>
+    <script src="App/libs/jquery-2.1.4.min.js"></script>
+    <script src="App/libs/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="App/content/bootstrap.min.css" />
+    <link rel="stylesheet" href="App/content/bootstrap-theme.min.css" />
+
+    <script src="App/app.js"></script>
+    <script src="App/controller/homecontroller.js"></script>
+    <script src="App/controller/accountcontroller.js"></script>
+    <script src="App/controller/customercontroller.js"></script>
+
+    <script src="App/factory/userFactory.js"></script>
+
+    <style>
+        .page-header{
+            background-color: #556b2f;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding:2px 30px;
+            padding-left:50px ;
+            padding-right:50px ;
+            margin: 18px;
+            margin-top:0px;
+
+        }
+
+        .page-header h3, h5{
+            color: #eee;
+
+
+        }
+
+        .navbar-nav{
+            background-color: #556b2f;
+
+        }
+
+        li a {
+            color: #60401a;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page-header">
+    <h3>Welcome..</h3>
+    <h5>Administrator's Homepage</h5>
+    <nav class="navbar">
+        <ul class="nav navbar-nav">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/contact">Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div ng-hide="loggedIn">
+                    <a href="#/login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#/register">Register</a>
+                </div>
+
+                <div ng-show="loggedIn">
+                    <a href="#/logout">Logout</a>
+
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <ng-view></ng-view>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <footer>
+        &copy; Banklogin Org-2015
+    </footer>
+</div>
+
+
+</body>
+</html>

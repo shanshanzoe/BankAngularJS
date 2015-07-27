@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <h3>customer information</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>userId</th>
+            <th>username</th>
+            <th>password</th>
+            <th>firstname</th>
+            <th>lastname</th>
+            <th>email</th>
+            <th>mobile</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="lala in allUsers">
+        <tr>
+            <td>{{lala.userid}}</td>
+            <td>{{lala.username}}</td>
+            <td>{{lala.password}}</td>
+            <td>{{lala.firstname}}</td>
+            <td>{{lala.lastname}}</td>
+            <td>{{lala.email}}</td>
+            <td>{{lala.mobile}}</td>
+            <td>
+                <a href="#/customerinfo/{{lala.userid}}" >view&update</a>
+                <a href="" ng-click="deleteUser(lala.userid)">delete</a>
+                <a href="#/customeraccounts/{{lala.userid}}">account</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-success" ng-click="registerUser()">Add New</button>
+</div>
+
+
+<div class="container-fluid">
+        <h3>accounts details</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>account id</th>
+                <th>account type</th>
+                <th>account number</th>
+                <th>account balance</th>
+            </tr>
+            </thead>
+
+            <tbody ng-repeat="account in allAccounts">
+            <tr>
+                <td>{{account.accountid}}</td>
+                <td>{{account.accounttype}}</td>
+                <td>{{account.accountnumber}}</td>
+                <td>{{account.accountbalance}}</td>
+            </tr>
+            </tbody>
+
+        </table>
+</div>
