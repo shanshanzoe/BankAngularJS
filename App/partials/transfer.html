@@ -2,29 +2,30 @@
     <div class="jumbotron">
     <h3>make transfer</h3>
         <form class="form-horizontal">
-            <p>transfer from</p>
-            <div class="form-group" ng-hide="true">
-                <label>account id</label>
-                <input type="text" class="form-control" ng-model="myAccount.accountId">
+            <div class="form-group">
+                <label>choose from account</label>
+                <input type="text" class="form-control" ng-model="fromAccount1.accountType"/>
             </div>
             <div class="form-group">
-                <label>account type</label>
-                <input type="text" class="form-control" ng-model="myAccount.accountType">
-            </div>
-            <div class="form-group">
-                <label>account number</label>
-                <input type="text" class="form-control" ng-model="myAccount.accountNumber">
-            </div>
-            <div class="form-group">
-                <label>account balance</label>
-                <input type="text" class="form-control" ng-model="myAccount.accountBalance">
+                <label>choose to account</label>
+                <input type="text" class="form-control" ng-model="toAccount1.accountType"/>
             </div>
 
-            <!--<div>-->
-                <!--<button type="button" class="btn btn-success" ng-click="saveAccount()" >save account</button>-->
-                <!--<button type="button" class="btn btn-success" ng-click="closeRegister()">cancelll</button>-->
+            <div class="form-group">
+            <label>amount</label>
+            <input type="text"  class="form-control" id="shanshan">
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label>amount</label>-->
+                <!--<input type="text" class="form-control" ng-model="transferAmount.amount">-->
             <!--</div>-->
-            <p>transfer to</p>
+
+            <div>
+                <button type="button" class="btn btn-success" ng-click="makeTransfer()" >make transfer</button>
+                <button type="button" class="btn btn-success" ng-click="closeRegister()">cancelll</button>
+            </div>
+
 
         </form>
 

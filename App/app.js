@@ -14,7 +14,7 @@ app.config(function ($routeProvider){
         .when('/customerInfo/:userId',{controller:'accountController', templateUrl:'App/partials/customerInfo.html'})
         .when('/customerAccounts/:userId', {controller:'accountController', templateUrl:'App/partials/customerAccounts.html'})
         .when('/customerAccounts', {controller:'accountController', templateUrl:'App/partials/customerAccounts.html'})
-        .when('/transfer/:accountNumber', {controller:'accountController', templateUrl:'App/partials/transfer.html'})
+        .when('/transfer', {controller:'accountController', templateUrl:'App/partials/transfer.html'})
         .otherwise({redirectTo:'/'});
 
 

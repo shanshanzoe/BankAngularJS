@@ -10,7 +10,12 @@ app.controller('accountController', function($scope, $rootScope,$location,$route
     $rootScope.isEditing=false;
     $rootScope.theUser=null;
     $rootScope.myAccounts=[{accountId:1, accountType:'',accountNumber:'',accountBalance:''}];
-    $rootScope.myAccount={accountId:1, accountType:'',accountNumber:'',accountBalance:''};
+    $rootScope.fromAccount={accountId:1, accountType:'',accountNumber:'',accountBalance:''};
+    $rootScope.toAccount={accountId:1, accountType:'',accountNumber:'',accountBalance:''};
+    //$rootScope.fromAccount1={};
+    //$rootScope.toAccount1={};
+
+    //$rootScope.amount=0;
 
 
     function init(){
@@ -33,8 +38,12 @@ app.controller('accountController', function($scope, $rootScope,$location,$route
                 var myUser=userFactory.getUserByUsername(myUsername);
                 $rootScope.theUser=myUser;
                 $rootScope.myAccounts=userFactory.getAccountsByAccountsId(myUser.userId);
-
-
+                //$rootScope.fromAccount=userFactory.getFromAccountByAccountType($scope.fromAccount1.accountType);
+                //$rootScope.toAccount=userFactory.getToAccountByAccountType($scope.toAccount1.accountType);
+                //var theAccount1=userFactory.getFromAccountByAccountType($scope.fromAccount.accountType);
+                //var theAccount2=userFactory.getToAccountByAccountType($scope.toAccount.accountType);
+                //$rootScope.fromAccount=theAccount1;
+                //$rootScope.toAccount=theAccount2;
 
             }
         }
@@ -110,20 +119,86 @@ app.controller('accountController', function($scope, $rootScope,$location,$route
     }
     getUserById();
 
+    $scope.toTransferPage=function(){
 
-    function getAccountByAccountNumber(){
-        var accountNumber=$routeParams.accountNumber;
-        if(accountNumber!=null||accountNumber!=undefined){
-            $rootScope.myAccount=userFactory.getAccountByAccountNumber(accountNumber);
-        }
-
+        $location.path('/transfer');
     }
-    getAccountByAccountNumber();
 
 
+    $scope.getFromAccountByAccountType=function (){
+
+        var fromAccountType=$scope.fromAccount1.accountType;
+        if(fromAccountType!= null || fromAccountType!=undefined){
+            alert("fromAccounttype"+fromAccountType);
+            $rootScope.fromAccount=userFactory.getFromAccountByAccountType(fromAccountType);
+        }
+    }
+
+   $scope.getToAccountByAccountType= function(){
+
+        var toAccountType=$scope.toAccount1.accountType;
+        if(toAccountType!= null || toAccountType!=undefined){
+            $rootScope.toAccount=userFactory.getToAccountByAccountType(toAccountType);
+
+        }
+    }
 
     $scope.makeTransfer=function(){
 
+        $scope.getFromAccountByAccountType();
+        $scope.getToAccountByAccountType();
+
+        var fromAccountType=$rootScope.fromAccount.accountType;
+        var toAccountType=$rootScope.toAccount.accountType;
+        var fromAccountBalance = $rootScope.fromAccount.accountBalance;
+        var toAccountBalance = $rootScope.toAccount.accountBalance;
+        var amount =document.getElementById("shanshan").value;
+        alert("fromaccountbalance  "+fromAccountBalance );
+
+        //if(fromAccountType=="saving"||fromAccountType=="checking") {
+        //    if (fromAccountBalance >= amount) {
+        //        fromAccountBalance = fromAccountBalance - amount;
+        //        toAccountBalance = toAccountBalance -(-amount);
+        //        alert("FROMACCOUNT " + fromAccountBalance);
+        //        alert("TOACCOUNT   " + toAccountBalance)
+        //    } else {
+        //        alert("credit is not enough");
+        //
+        //    }
+        //
+        //}
+        //$location.path('/customerHome');
+
+        if(fromAccountType=="saving"&&toAccountType=="checking"){
+            if(fromAccountBalance>=amount){
+                fromAccountBalance=fromAccountBalance-amount;
+                toAccountBalance=toAccountBalance-(-amount);
+                alert("DFASF  "+fromAccountBalance);
+                alert("TOACCOUNT   "+toAccountBalance)
+            }else{
+                alert("credit is not enough");
+            }
+        }else if (fromAccountType=="checking"&&toAccountType=="saving"){
+            if(fromAccountBalance>=amount){
+                fromAccountBalance=fromAccountBalance-amount;
+                toAccountBalance=toAccountBalance-(-amount);
+            }else{
+                alert("credit is not enough");
+            }
+
+        }else{
+            alert("error!");
+        }
+        $location.path('/customerHome');
+
+
+
+    }
+
+
+
+
+    $scope.showTransaction=function(){
 
 
     }
@@ -160,11 +235,4 @@ app.controller('accountController', function($scope, $rootScope,$location,$route
         $location.path('/adminHome');
 
     }
-
-
-
-    //$scope.toTransferpage=function(){
-    //
-    //    $location.path('/transfer');
-    //}
     });

@@ -19,7 +19,6 @@
                     <th>account type</th>
                     <th>account number</th>
                     <th>account balance</th>
-                    <th>action</th>
                 </tr>
                 </thead>
 
@@ -29,13 +28,11 @@
                     <td>{{account.accountType}}</td>
                     <td>{{account.accountNumber}}</td>
                     <td>{{account.accountBalance}}</td>
-                    <td>
-                        <a href="#/transfer/{{account.accountNumber}}" >transfer</a>
-                    </td>
                 </tr>
                 </tbody>
-
             </table>
+        <button type="button" class="btn btn-success" ng-click="toTransferPage()">transfer</button>
+
     </div>
 </div>
 
@@ -45,16 +42,17 @@
         <table class="table">
             <thead>
             <tr>
+                <th>account id</th>
                 <th>account type</th>
                 <th>account number</th>
                 <th>account balance</th>
             </tr>
             </thead>
-            <tbody ng-repeat="account in xxx">
+            <tbody ng-repeat="transaction in transactions">
+            <tr>
+                <td>{{}}</td>
 
-
-
-
+            </tr>
             </tbody>
         </table>
 

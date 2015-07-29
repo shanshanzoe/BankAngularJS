@@ -5,6 +5,8 @@ app.factory('userFactory', function(){
     var obj={};
     var data=[{userId:1, username:'admin', password:'admin',firstname:'shanshan',lastname:'gao',email:'gao@gmail.com',mobile:'12345'}];
     var accounts=[];
+    var myAccounts=[];
+    var myTransactions=[];
 
     obj.addUser=function(user){
         user.userId=data.length+1;
@@ -55,7 +57,6 @@ app.factory('userFactory', function(){
     }
 
     obj.getAccountsByAccountsId=function(accountId){
-        var myAccounts=[];
         var myAccount=null;
         for (var i= 0; i<accounts.length; i++){
             if(accounts[i].accountId==accountId){
@@ -63,22 +64,42 @@ app.factory('userFactory', function(){
                 myAccounts.push(myAccount);
             }
         }
+
         return myAccounts;
     }
 
-    obj.getAccountByAccountNumber=function(accountNumber){
-        var myAccount=null;
-        for (var i=0; i<accounts.length; i++){
-            if(accounts[i].accountNumber==accountNumber){
-                myAccount=accounts[i];
+
+    obj.getFromAccountByAccountType=function(fromAccountType){
+        var myFromAccount=null;
+        for (var i= 0; i<myAccounts.length;i++){
+            if(myAccounts[i].accountType==fromAccountType){
+                myFromAccount=myAccounts[i];
+
             }
         }
-        return myAccount;
+        return myFromAccount;
+
+    }
+
+
+    obj.getToAccountByAccountType=function(toAccountType){
+        var myToAccount=null;
+        for (var i= 0; i<myAccounts.length;i++){
+            if(myAccounts[i].accountType==toAccountType){
+                myToAccount=myAccounts[i];
+            }
+        }
+        return myToAccount;
+    }
+
+    obj.getTransactions= function () {
+
     }
 
 
     obj.saveAccount=function(account){
         accounts.push(account);
+
         //alert("saving"+ accounts[0].accountNumber);
         //alert("checking"+accounts[accounts.length-1].accountNumber);
     }
