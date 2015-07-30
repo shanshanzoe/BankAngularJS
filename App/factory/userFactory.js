@@ -56,23 +56,39 @@ app.factory('userFactory', function(){
 
     }
 
+    /*
+     /////////////////
+     hjy
+     ///////////////////
+     */
     obj.getAccountsByAccountsId=function(accountId){
         var myAccount=null;
+        /*
+         /////////////////
+         hjy
+         ///////////////////
+         */
+        var tempAccounts=[];  // temp variable, please DO NOT use global variable
         for (var i= 0; i<accounts.length; i++){
             if(accounts[i].accountId==accountId){
                 myAccount=accounts[i];
-                myAccounts.push(myAccount);
+                tempAccounts.push(myAccount);
             }
         }
 
-        return myAccounts;
+        return tempAccounts;
     }
 
 
-    obj.getFromAccountByAccountType=function(fromAccountType){
+    /*
+     /////////////////
+     hjy
+     ///////////////////
+     */
+ /*   obj.getFromAccountByAccountType=function(fromAccountType){
         var myFromAccount=null;
         for (var i= 0; i<myAccounts.length;i++){
-            if(myAccounts[i].accountType==fromAccountType){
+            if([i].accountType==fromAccountType){
                 myFromAccount=myAccounts[i];
 
             }
@@ -90,7 +106,7 @@ app.factory('userFactory', function(){
             }
         }
         return myToAccount;
-    }
+    }*/
 
     obj.getTransactions= function () {
 
